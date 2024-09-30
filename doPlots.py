@@ -36,7 +36,6 @@ plots = [
     plotTS(history, args),
     plotLogReturns(history, args),
     plotPopulation(history, args),
-    plotECDF(history, args),
     animateXZ(history, args)
 ]
 
@@ -44,7 +43,7 @@ for i in range(len(plots)):
     plots[i]
 
 
-# Load the data from simul1
+# Load the data from simul1 (longer)
 with open("./files/simul1.pkl", "rb") as f:
     history = pickle.load(f)
 totalT = len(history["prices"])
@@ -53,7 +52,8 @@ args = state, params, time
 
 # Plot for simul1
 plots = [
-    plotDFA(history, args)
+    plotECDF(history, args),
+    plotDFA(history, args),
 ]
 
 for i in range(len(plots)):

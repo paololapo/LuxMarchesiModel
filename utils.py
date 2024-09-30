@@ -215,7 +215,7 @@ def plotECDF(history, args):
                 markersize=1, linestyle="-", linewidth=2)
     ax[0].legend(loc="lower left", fontsize=fontsize)
     ax[0].set_xlabel("Return", fontsize=fontsize)
-    ax[0].set_ylabel("Prob(>|log-ret|)", fontsize=fontsize)
+    ax[0].set_ylabel(r"Prob($>|$log-ret$|$)", fontsize=fontsize)
     ax[0].tick_params(axis='both', which='major', labelsize=fontsize*0.8)
     ax[0].tick_params(axis='both', which='minor', labelsize=fontsize*0.8)
     ax[0].set_xlim(1e-3, 100)
