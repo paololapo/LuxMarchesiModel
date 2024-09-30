@@ -10,3 +10,5 @@ __pycache__/
 # Other common files
 .env
 *.DS_Store
+
+./files/simul2.pkl
