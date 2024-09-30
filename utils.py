@@ -269,7 +269,7 @@ def plotDFA(history, args):
     ax[0].set_ylabel("Fluctuation strength", fontsize=fontsize)
     ax[0].tick_params(axis='both', which='major', labelsize=fontsize*0.8)
     ax[0].tick_params(axis='both', which='minor', labelsize=fontsize*0.8)
-    ax[0].set_title("DFA | Returns", fontsize=fontsize*1.3)
+    ax[0].set_title("DFA | returns", fontsize=fontsize*1.3)
     ax[0].legend(loc="upper left", fontsize=fontsize)
 
     ax[1].plot(lengths_abs[mask], fluctuations_abs[mask], "o-", lw=3, color=colors[0], label="price")
