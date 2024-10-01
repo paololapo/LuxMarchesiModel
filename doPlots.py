@@ -52,6 +52,7 @@ args = state, params, time
 
 # Plot for simul1
 plots = [
+    plotACF(history, args),
     plotECDF(history, args),
     plotDFA(history, args),
 ]

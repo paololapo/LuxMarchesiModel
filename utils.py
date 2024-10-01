@@ -39,6 +39,16 @@ def movingAverage(data, w):
     return avg
 
 
+def getAutocorrelation(data, min_lag=1, max_lag=300):
+    """
+    Compute the autocorrelation of a time series.
+    """
+    acf = np.zeros(max_lag)
+    for i in range(min_lag, max_lag):
+        acf[i] = np.corrcoef(data[:-i], data[i:])[0, 1]
+    return acf[min_lag:]
+
+
 def getFluctuation(data, k):
     """
     Compute the fluctuation strength of a time series.
@@ -344,3 +354,27 @@ def animateXZ(history, args):
 
     # Save the animation as a GIF (optional)
     ani.save('./images/ComplexWalk.gif', writer='pillow', fps=20)
+
+
+def plotACF(history, args):
+    ret = np.diff(np.log(history["prices"]))
+
+    acf = getAutocorrelation(ret, 8, 150)
+    acg_2 = getAutocorrelation(ret**2, 8, 150)
+    acg_abs = getAutocorrelation(np.abs(ret), 8, 150)
+
+    x = np.arange(8, 150, 1)
+
+    fig, ax = plt.subplots(1, 1, figsize=(20, 8))
+    ax.plot(x, acf, lw=3, label="log-returns")
+    ax.plot(x, acg_2, lw=3, label="squared log-returns")
+    ax.plot(x, acg_abs, lw=3, label="absolute log-returns")
+    ax.set_xlabel("Lag", fontsize=25)
+    ax.set_ylabel("ACF", fontsize=25)
+    ax.set_title("Autocorrelation", fontsize=25)
+    ax.legend(fontsize=25)
+    ax.tick_params(axis='both', which='major', labelsize=20)
+    ax.tick_params(axis='both', which='minor', labelsize=20)
+
+    fig.savefig("./images/ACF.png", format='png')
+    return
